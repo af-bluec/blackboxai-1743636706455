@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Clone</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'twitter-blue': '#1DA1F2',
+                        'twitter-dark': '#15202B',
+                        'twitter-gray': '#657786'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 min-h-screen">
+    <!-- Main Container -->
+    <div class="flex min-h-screen">
+        <!-- Left Sidebar -->
+        <div class="w-1/4 border-r border-gray-200 p-4 fixed h-screen">
+            <div class="space-y-4">
+                <!-- Logo -->
+                <div class="text-2xl p-4">
+                    <i class="fab fa-twitter text-twitter-blue"></i>
+                </div>
+                
+                <!-- Navigation -->
+                <nav class="space-y-2">
+                    <a href="#" class="flex items-center space-x-4 p-3 hover:bg-gray-100 rounded-full transition">
+                        <i class="fas fa-home text-xl"></i>
+                        <span class="text-xl">Home</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-4 p-3 hover:bg-gray-100 rounded-full transition">
+                        <i class="fas fa-hashtag text-xl"></i>
+                        <span class="text-xl">Explore</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-4 p-3 hover:bg-gray-100 rounded-full transition">
+                        <i class="far fa-bell text-xl"></i>
+                        <span class="text-xl">Notifications</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-4 p-3 hover:bg-gray-100 rounded-full transition">
+                        <i class="far fa-envelope text-xl"></i>
+                        <span class="text-xl">Messages</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-4 p-3 hover:bg-gray-100 rounded-full transition">
+                        <i class="far fa-user text-xl"></i>
+                        <span class="text-xl">Profile</span>
+                    </a>
+                </nav>
+
+                <!-- Tweet Button -->
+                <button class="bg-twitter-blue text-white rounded-full py-3 px-8 w-full text-lg font-bold hover:bg-blue-600 transition">
+                    Tweet
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="w-1/2 ml-[25%] border-r border-gray-200">
+            <!-- Header -->
+            <div class="p-4 border-b border-gray-200 backdrop-blur-md bg-white/80 sticky top-0 z-10">
+                <h1 class="text-xl font-bold">Home</h1>
+            </div>
+
+            <!-- Tweet Composer -->
+            <div class="p-4 border-b border-gray-200">
+                <div class="flex space-x-4">
+                    <img src="https://via.placeholder.com/48" alt="Profile" class="w-12 h-12 rounded-full">
+                    <div class="flex-1">
+                        <textarea 
+                            class="w-full bg-transparent text-xl placeholder-gray-600 outline-none resize-none" 
+                            placeholder="What's happening?"
+                            rows="3"
+                        ></textarea>
+                        <div class="flex justify-between items-center mt-4">
+                            <div class="flex space-x-4 text-twitter-blue">
+                                <button class="hover:bg-blue-100 p-2 rounded-full">
+                                    <i class="far fa-image"></i>
+                                </button>
+                                <button class="hover:bg-blue-100 p-2 rounded-full">
+                                    <i class="fas fa-poll"></i>
+                                </button>
+                                <button class="hover:bg-blue-100 p-2 rounded-full">
+                                    <i class="far fa-smile"></i>
+                                </button>
+                                <button class="hover:bg-blue-100 p-2 rounded-full">
+                                    <i class="far fa-calendar"></i>
+                                </button>
+                            </div>
+                            <button class="bg-twitter-blue text-white rounded-full px-4 py-2 font-bold hover:bg-blue-600 transition">
+                                Tweet
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tweets Feed -->
+            <div class="divide-y divide-gray-200">
+                <!-- Tweet -->
+                <div class="p-4 hover:bg-gray-50 transition cursor-pointer">
+                    <div class="flex space-x-4">
+                        <img src="https://via.placeholder.com/48" alt="Profile" class="w-12 h-12 rounded-full">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-2">
+                                <span class="font-bold">John Doe</span>
+                                <span class="text-gray-500">@johndoe</span>
+                                <span class="text-gray-500">·</span>
+                                <span class="text-gray-500">1h</span>
+                            </div>
+                            <p class="mt-2">Just setting up my Twitter clone! 🚀</p>
+                            <div class="flex justify-between mt-4 text-gray-500 w-4/5">
+                                <button class="hover:text-twitter-blue hover:bg-blue-100 p-2 rounded-full">
+                                    <i class="far fa-comment"></i>
+                                    <span class="ml-2">24</span>
+                                </button>
+                                <button class="hover:text-green-500 hover:bg-green-100 p-2 rounded-full">
+                                    <i class="fas fa-retweet"></i>
+                                    <span class="ml-2">12</span>
+                                </button>
+                                <button class="hover:text-red-500 hover:bg-red-100 p-2 rounded-full">
+                                    <i class="far fa-heart"></i>
+                                    <span class="ml-2">350</span>
+                                </button>
+                                <button class="hover:text-twitter-blue hover:bg-blue-100 p-2 rounded-full">
+                                    <i class="far fa-share-square"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- More Tweets (Similar Structure) -->
+                <div class="p-4 hover:bg-gray-900/50 transition cursor-pointer">
+                    <div class="flex space-x-4">
+                        <img src="https://via.placeholder.com/48" alt="Profile" class="w-12 h-12 rounded-full">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-2">
+                                <span class="font-bold">Jane Smith</span>
+                                <span class="text-gray-500">@janesmith</span>
+                                <span class="text-gray-500">·</span>
+                                <span class="text-gray-500">2h</span>
+                            </div>
+                            <p class="mt-2">This Twitter clone looks amazing! Love the dark theme and smooth interactions! 💫</p>
+                            <div class="flex justify-between mt-4 text-gray-500 w-4/5">
+                                <button class="hover:text-twitter-blue hover:bg-blue-900/30 p-2 rounded-full">
+                                    <i class="far fa-comment"></i>
+                                    <span class="ml-2">18</span>
+                                </button>
+                                <button class="hover:text-green-500 hover:bg-green-900/30 p-2 rounded-full">
+                                    <i class="fas fa-retweet"></i>
+                                    <span class="ml-2">8</span>
+                                </button>
+                                <button class="hover:text-red-500 hover:bg-red-900/30 p-2 rounded-full">
+                                    <i class="far fa-heart"></i>
+                                    <span class="ml-2">283</span>
+                                </button>
+                                <button class="hover:text-twitter-blue hover:bg-blue-900/30 p-2 rounded-full">
+                                    <i class="far fa-share-square"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="w-1/4 p-4 fixed right-0">
+            <!-- Search Bar -->
+            <div class="relative">
+                <i class="fas fa-search absolute left-4 top-3 text-gray-600"></i>
+            <input 
+                type="text" 
+                placeholder="Search Twitter" 
+                class="w-full bg-gray-100 rounded-full py-2 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-twitter-blue text-gray-900"
+            >
+            </div>
+
+            <!-- Trending Topics -->
+            <div class="bg-gray-50 rounded-xl mt-4">
+                <h2 class="text-xl font-bold p-4">Trends for you</h2>
+                <div class="divide-y divide-gray-200">
+                    <div class="p-4 hover:bg-gray-100 transition cursor-pointer">
+                        <div class="text-gray-500 text-sm">Trending in Technology</div>
+                        <div class="font-bold mt-1">#TwitterClone</div>
+                        <div class="text-gray-500 text-sm">5,281 Tweets</div>
+                    </div>
+                    <div class="p-4 hover:bg-gray-800/50 transition cursor-pointer">
+                        <div class="text-gray-500 text-sm">Trending Worldwide</div>
+                        <div class="font-bold mt-1">#WebDevelopment</div>
+                        <div class="text-gray-500 text-sm">12.5K Tweets</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Who to Follow -->
+            <div class="bg-gray-50 rounded-xl mt-4">
+                <h2 class="text-xl font-bold p-4">Who to follow</h2>
+                <div class="divide-y divide-gray-200">
+                    <div class="p-4 hover:bg-gray-100 transition cursor-pointer">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://via.placeholder.com/40" alt="Profile" class="w-10 h-10 rounded-full">
+                                <div>
+                                    <div class="font-bold">Tech Insider</div>
+                                    <div class="text-gray-500">@techinsider</div>
+                                </div>
+                            </div>
+                            <button class="bg-white text-black rounded-full px-4 py-1 font-bold hover:bg-gray-200 transition">
+                                Follow
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-4 hover:bg-gray-800/50 transition cursor-pointer">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://via.placeholder.com/40" alt="Profile" class="w-10 h-10 rounded-full">
+                                <div>
+                                    <div class="font-bold">Web Dev News</div>
+                                    <div class="text-gray-500">@webdevnews</div>
+                                </div>
+                            </div>
+                            <button class="bg-white text-black rounded-full px-4 py-1 font-bold hover:bg-gray-200 transition">
+                                Follow
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
