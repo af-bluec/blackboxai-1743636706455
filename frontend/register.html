@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Twitter Clone</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'twitter-blue': '#1DA1F2',
+                        'twitter-dark': '#15202B',
+                        'twitter-gray': '#657786'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen flex items-center justify-center py-8">
+    <div class="max-w-md w-full p-6">
+        <!-- Logo -->
+        <div class="text-center mb-8">
+            <i class="fab fa-twitter text-twitter-blue text-5xl"></i>
+        </div>
+
+        <!-- Registration Form -->
+        <div class="bg-white rounded-2xl p-8 shadow-lg">
+            <h1 class="text-2xl font-bold mb-8 text-center">Create your account</h1>
+            
+            <form id="registerForm" class="space-y-6">
+                <!-- Name Input -->
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                    <input 
+                        type="text" 
+                        id="name" 
+                        name="name" 
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-twitter-blue"
+                        required
+                        minlength="2"
+                        maxlength="50"
+                    >
+                </div>
+
+                <!-- Username Input -->
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700 mb-2">Username</label>
+                    <div class="relative">
+                        <span class="absolute left-4 top-3 text-gray-500">@</span>
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username" 
+                            class="w-full px-4 py-3 pl-8 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-twitter-blue"
+                            required
+                            minlength="3"
+                            maxlength="15"
+                            pattern="^[a-zA-Z0-9_]+$"
+                            title="Username can only contain letters, numbers, and underscores"
+                        >
+                    </div>
+                </div>
+
+                <!-- Email Input -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-twitter-blue"
+                        required
+                    >
+                </div>
+
+                <!-- Password Input -->
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-twitter-blue"
+                        required
+                        minlength="6"
+                    >
+                    <p class="mt-2 text-sm text-gray-500">Password must be at least 6 characters long</p>
+                </div>
+
+                <!-- Error Message (hidden by default) -->
+                <div id="errorMessage" class="text-red-500 text-sm text-center hidden"></div>
+
+                <!-- Register Button -->
+                <button 
+                    type="submit"
+                    class="w-full bg-twitter-blue text-white rounded-full py-3 font-bold hover:bg-blue-600 transition"
+                >
+                    Sign up
+                </button>
+            </form>
+
+            <!-- Login Link -->
+            <div class="mt-6 text-center text-gray-500">
+                Already have an account? 
+                <a href="login.html" class="text-twitter-blue hover:underline">Sign in</a>
+            </div>
+        </div>
+
+        <!-- Footer Links -->
+        <div class="mt-8 text-center text-sm text-gray-500">
+            <a href="#" class="hover:underline">Terms</a> ·
+            <a href="#" class="hover:underline">Privacy Policy</a> ·
+            <a href="#" class="hover:underline">Cookie Policy</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            try {
+                const response = await fetch('http://localhost:5000/api/users/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, username, email, password })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Store token
+                    localStorage.setItem('token', data.data.token);
+                    // Redirect to home page
+                    window.location.href = 'index.html';
+                } else {
+                    errorMessage.textContent = data.message;
+                    errorMessage.classList.remove('hidden');
+                }
+            } catch (error) {
+                errorMessage.textContent = 'An error occurred. Please try again.';
+                errorMessage.classList.remove('hidden');
+            }
+        });
+
+        // Real-time username validation
+        document.getElementById('username').addEventListener('input', function(e) {
+            const username = e.target.value;
+            const isValid = /^[a-zA-Z0-9_]+$/.test(username);
+            
+            if (!isValid && username) {
+                e.target.setCustomValidity('Username can only contain letters, numbers, and underscores');
+            } else {
+                e.target.setCustomValidity('');
+            }
+        });
+    </script>
+</body>
+</html>
